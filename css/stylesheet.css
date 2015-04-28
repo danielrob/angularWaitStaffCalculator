@@ -1,0 +1,58 @@
+body {
+  font-family: sans-serif;
+  font-size: 14px; }
+
+input {
+  border: solid 2px black; }
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0; }
+
+table {
+  border-collapse: collapse;
+  margin: 5px auto; }
+  table td {
+    text-align: left;
+    padding: 6px; }
+  table td:first-child {
+    text-align: right; }
+
+#spacer {
+  margin-top: 60px; }
+
+.container {
+  width: 640px;
+  margin: auto;
+  text-align: center; }
+  .container h1 {
+    margin-bottom: 0px; }
+
+.box {
+  float: left;
+  width: 275.2px;
+  border: solid 2px black;
+  margin: 10px; }
+  .box .title {
+    width: 275.2px;
+    border-bottom: solid 2px black; }
+    .box .title h3 {
+      text-align: left;
+      margin: 8px 10px; }
+
+.border-top {
+  border-top: solid 2px black; }
+
+#meal-details {
+  height: 320px; }
+
+#customer-charges {
+  height: 150px; }
+
+#earnings {
+  height: 150px; }
+
+#reset {
+  float: right;
+  clear: both; }

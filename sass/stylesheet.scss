@@ -1,0 +1,81 @@
+$height: 300px;
+$width: 640px;
+$boxwidth: $width *.43;
+$borderwidth: 2px;
+
+body {
+  font-family: sans-serif;
+  font-size: 14px;
+}
+
+input {
+  border: solid $borderwidth black;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+ input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+   margin: 0; 
+}
+
+table {
+  border-collapse: collapse; 
+  margin: 5px auto;
+  td {
+    text-align: left;
+    padding: 6px;
+  }
+  td:first-child {
+    text-align: right;
+  }
+}
+
+#spacer {
+  margin-top: 60px;
+}
+
+.container {
+  width: $width;
+  margin: auto;
+  text-align: center;
+  h1 {
+    margin-bottom: 0px;
+  }
+}
+
+.box {
+  float: left;
+  width: $boxwidth;
+  border: solid $borderwidth black;
+  margin: 10px;
+  .title {
+    width: $boxwidth;
+    border-bottom: solid $borderwidth black;
+    h3 {
+      text-align: left;
+      margin: 8px 10px;
+    }
+  }
+
+}
+
+.border-top {
+    border-top: solid $borderwidth black;
+  }
+
+#meal-details{
+  height: $height + 20;
+}
+
+#customer-charges {
+  height: $height * 0.5;
+}
+
+#earnings {
+  height: $height * 0.5;
+}
+
+#reset {
+  float: right;
+  clear: both;
+}
