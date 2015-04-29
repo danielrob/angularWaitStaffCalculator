@@ -30,10 +30,6 @@ table {
   }
 }
 
-#spacer {
-  margin-top: 60px;
-}
-
 .container {
   width: $width;
   margin: auto;
@@ -59,9 +55,13 @@ table {
 
 }
 
-.border-top {
-    border-top: solid $borderwidth black;
-  }
+.border-top { border-top: solid $borderwidth black; }
+
+#mealForm input.ng-invalid.ng-touched { background-color: red; }
+
+.invalid { color: red; }
+
+#spacer { margin-top: 60px; }
 
 #meal-details{
   height: $height + 20;

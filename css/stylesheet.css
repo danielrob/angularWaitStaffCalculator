@@ -19,9 +19,6 @@ table {
   table td:first-child {
     text-align: right; }
 
-#spacer {
-  margin-top: 60px; }
-
 .container {
   width: 640px;
   margin: auto;
@@ -43,6 +40,15 @@ table {
 
 .border-top {
   border-top: solid 2px black; }
+
+#mealForm input.ng-invalid.ng-touched {
+  background-color: red; }
+
+.invalid {
+  color: red; }
+
+#spacer {
+  margin-top: 60px; }
 
 #meal-details {
   height: 320px; }
