@@ -31,7 +31,7 @@ app.controller('appController', ['$scope', function ($scope) {
 
   $scope.submitMeal = function(){
     if (isEmpty($scope.newMeal.$error)) {
-      $scope.earnings.tipTotal += $scope.meal.tip;
+      $scope.earnings.tipTotal += ($scope.meal.tip / 100 * $scope.meal.base);
       $scope.earnings.mealCount += 1;
       this.cancel();
       pristifyForm();
