@@ -4,14 +4,18 @@ app.controller('appController', ['$scope', function ($scope) {
   
   var _default_tax = 8;
   $scope.meal = {}
-  $scope.meal.base = 100;
+  $scope.meal.base = 200;
   $scope.meal.tip = 19;
   $scope.meal.tax = _default_tax;
 
 
-  $scope.earnings = {}
-  $scope.earnings.tipTotal = 0;
-  $scope.earnings.mealCount = 0;
+  function initEarnings(){
+    $scope.earnings = {}
+    $scope.earnings.tipTotal = 0;
+    $scope.earnings.mealCount = 0;
+  };
+
+  initEarnings();
 
   $scope.tipAverage = function(){
     if ($scope.earnings.mealCount == 0) {
@@ -39,15 +43,13 @@ app.controller('appController', ['$scope', function ($scope) {
   };
 
   $scope.cancel = function(){
-    $scope.meal = { tax: _default_tax };
     pristifyForm();
+    $scope.meal = { tax: _default_tax };
   };
 
   $scope.resetAll = function(){
-    $scope.earnings = {};
     this.cancel();
-    pristifyForm();
-
+    initEarnings();
   };
 
   function pristifyForm(){
