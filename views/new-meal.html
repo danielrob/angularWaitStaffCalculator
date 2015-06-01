@@ -1,0 +1,59 @@
+<div id="meal-details" class="box">
+  <div class="title"><h3>Enter the Meal Details</h3></div>
+  <form name="newMeal" ng-submit="submitMeal()" novalidate id="mealForm">
+    <table>
+      <tr>
+        <td>Base Meal Price: $</td>
+        <td><input type="number" ng-model="meal.base" name="base" required></td>
+      </tr>
+      <tr>
+        <td ng-show="newMeal.$submitted == 1 && meal.base == undefined" colspan="2">
+          <span class="invalid">Ooops, what's the meal price again?</span>
+        </td>
+      </tr>
+      <tr>
+        <td>Tax Rate: %</td>
+        <td><input type="number" ng-model="meal.tax" name="tax" required></td>
+      </tr>
+      <tr>
+        <td ng-show="newMeal.$submitted == 1 && meal.tax == undefined" colspan="2">
+          <span class="invalid">That's not a tax rate!</span>
+        </td>
+      </tr>
+      <tr>
+        <td>Tip Percentage: %</td>          
+        <td><input type="number" ng-model="meal.tip" name="tip" required></td>
+      </tr>
+      <tr>
+        <td ng-show="newMeal.$submitted == 1 && meal.tip == undefined" colspan="2">
+          <span class="invalid">They tipped you nothing?</span>
+        </td>
+      </tr>
+    </table>
+    <div id="submit">
+      <input type="submit" value="Submit">
+      <input type="button" ng-click="cancel()" value="Cancel">
+    </div>
+  </form>
+</div>
+<div id="customer-charges" class="box">
+  <div class="title"><h3>Customer Charges</h3></div>
+  <table>
+    <tr>
+      <td>Subtotal</td>
+      <td>{{ subtotal() | currency:""}}</td>
+    </tr>
+    <tr>
+      <td>Tip</td>
+      <td>{{meal.base * (meal.tip / 100) || 0 | currency:"" }}</td>
+    </tr>
+    <tr class="border-top">
+      <td >Total</td>          
+      <td>{{ subtotal() + meal.tip  | currency:""}}</td>
+    </tr>
+  </table>
+</div>
+<!-- <div style="clear:both">
+  <pre>{{ newMeal | json}}</pre>
+  <pre>{{newMeal.$submitted | json}}</pre>
+</div> -->

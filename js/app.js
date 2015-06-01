@@ -1,21 +1,32 @@
-var app = angular.module('app', []);
+var app = angular.module('app', ['ngRoute']);
 
-app.controller('appController', ['$scope', function ($scope) {
+
+app.config(['$routeProvider', function($routeProvider){
+        $routeProvider
+        .when('/', {
+            templateUrl : 'views/home.html'
+        })
+        .when('/new-meal', {
+            templateUrl : 'views/new-meal.html',
+            controller : 'appController'
+        })
+        .when('/my-earnings', {
+            templateUrl : 'views/my-earnings.html',
+            controller : 'myEarnings'
+        })
+        .otherwise({
+          redirectTo: '/'
+        });
+    }]);
+
+app.factory("earnings",function(){
+        return {  'tipTotal'  : 0, 
+                  'mealCount' : 0 };
+});
+
+app.controller('myEarnings', function($scope, earnings){
   
-  var _default_tax = 8;
-  $scope.meal = {}
-  $scope.meal.base = 200;
-  $scope.meal.tip = 19;
-  $scope.meal.tax = _default_tax;
-
-
-  function initEarnings(){
-    $scope.earnings = {}
-    $scope.earnings.tipTotal = 0;
-    $scope.earnings.mealCount = 0;
-  };
-
-  initEarnings();
+  $scope.earnings = earnings;
 
   $scope.tipAverage = function(){
     if ($scope.earnings.mealCount == 0) {
@@ -25,6 +36,23 @@ app.controller('appController', ['$scope', function ($scope) {
     };
   };
 
+  $scope.resetAll = function(){
+    $scope.earnings.tipTotal = 0;
+    $scope.earnings.mealCount = 0;
+  };
+});
+
+
+app.controller('appController', function ($scope, earnings) {
+  $scope.earnings = earnings;
+
+
+  var _default_tax = 12.5;
+  $scope.meal = {}
+
+  $scope.meal.tax = _default_tax;
+
+
   $scope.subtotal = function(){
     if ($scope.meal.base == undefined || $scope.meal.tax == undefined) {
       return 0;
@@ -33,24 +61,6 @@ app.controller('appController', ['$scope', function ($scope) {
     };
   };
 
-  $scope.submitMeal = function(){
-    if (isEmpty($scope.newMeal.$error)) {
-      $scope.earnings.tipTotal += ($scope.meal.tip / 100 * $scope.meal.base);
-      $scope.earnings.mealCount += 1;
-      this.cancel();
-      pristifyForm();
-    }
-  };
-
-  $scope.cancel = function(){
-    pristifyForm();
-    $scope.meal = { tax: _default_tax };
-  };
-
-  $scope.resetAll = function(){
-    this.cancel();
-    initEarnings();
-  };
 
   function pristifyForm(){
     $scope.newMeal.$setPristine();
@@ -66,4 +76,19 @@ app.controller('appController', ['$scope', function ($scope) {
     return true;
   }
 
-}]);
+  $scope.cancel = function(){
+    pristifyForm();
+    $scope.meal = { tax: _default_tax };
+  };
+
+  $scope.submitMeal = function(){
+    if (isEmpty($scope.newMeal.$error)) {
+      // Submit the tipTotal.
+      $scope.earnings.tipTotal += ($scope.meal.tip / 100 * $scope.meal.base);
+      $scope.earnings.mealCount += 1;
+      this.cancel();
+      pristifyForm();
+    }
+  };
+
+});

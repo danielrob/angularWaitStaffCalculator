@@ -3,6 +3,11 @@ $width: 640px;
 $boxwidth: $width *.43;
 $borderwidth: 2px;
 
+ul li {
+  display: inline;
+  text-decoration: none;
+}
+
 body {
   font-family: sans-serif;
   font-size: 14px;
@@ -40,10 +45,9 @@ table {
 }
 
 .box {
-  float: left;
   width: $boxwidth;
   border: solid $borderwidth black;
-  margin: 10px;
+  margin: 10px auto;
   .title {
     width: $boxwidth;
     border-bottom: solid $borderwidth black;
@@ -61,10 +65,8 @@ table {
 
 .invalid { color: red; }
 
-#spacer { margin-top: 60px; }
-
-#meal-details{
-  height: $height + 20;
+#submit {
+  margin: 20px;
 }
 
 #customer-charges {
@@ -73,9 +75,4 @@ table {
 
 #earnings {
   height: $height * 0.5;
-}
-
-#reset {
-  float: right;
-  clear: both;
 }
